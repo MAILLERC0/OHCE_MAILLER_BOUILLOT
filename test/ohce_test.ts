@@ -7,6 +7,7 @@ import { LanguageInterface } from "../src/domain/languageInterface";
 import { CheckPalindromeBuilder } from "./utilities/checkPalindromeBuilder";
 import { LanguageSpy } from './utilities/languageSpy';
 import { TimeOfDay } from "../src/domain/timeOfDay";
+import { LanguageFake } from "./utilities/langueFake";
 
 
 describe("STEP 1 - Test", () => {
@@ -17,6 +18,7 @@ describe("STEP 1 - Test", () => {
     ])("QUAND on saisit une chaine " +
         "ALORS celle-ci est renvoyé en miroir ", (text : string) =>{
         let checker = new CheckPalindromeBuilder()
+        .SetLanguage(new LanguageVF())
         .Build();
         let result = checker.Check(text);
         
@@ -30,6 +32,7 @@ describe("STEP 1 - Test", () => {
         "ET 'Bien dit !' est envoyé ensuite", () =>{
        const palindrome = "kayak";
        let checker = new CheckPalindromeBuilder()
+       .SetLanguage(new LanguageVF())
        .Build();
 
        let result = checker.Check(palindrome);
@@ -41,6 +44,7 @@ describe("STEP 1 - Test", () => {
         "ALORS 'Bonjour' est envoyé avant toute réponse ", () =>{
         const text = "test";
         let checker = new CheckPalindromeBuilder()
+        .SetLanguage(new LanguageVF())
         .Build();
 
         let result = checker.Check(text);
@@ -54,6 +58,7 @@ describe("STEP 1 - Test", () => {
         "ALORS 'Au revoir' est envoyé en dernier", () =>{
         const text = "test";
         let checker = new CheckPalindromeBuilder()
+        .SetLanguage(new LanguageVF())
         .Build();
 
         let result = checker.Check(text);
@@ -190,5 +195,52 @@ describe("STEP 3 - Test", () => {
         let lastLine = lines[lines.length - 1];
 
         expect(lastLine).toEqual(expected)
+    });
+});
+
+describe("STEP 4 - Tests Bonus", () => {
+
+    test.each([
+        ['hello', 'kayak']
+    ])("Il n’y a pas de sauts de ligne comme dernier caractère de la sortie alors qu’il faudrait",
+        (text: string) => {
+        let checker = new CheckPalindromeBuilder()
+            .SetLanguage(new LanguageFake())
+            .Build();
+
+        let result = checker.Check(text) + os.EOL;
+
+        expect(result.endsWith(os.EOL)).toBe(true);
+    });
+
+
+    test("Tests de Recettes",
+        () => {
+        
+        let checkerENPalindromeEvening
+            = new CheckPalindromeBuilder()
+            .SetTimeOfDay(TimeOfDay.Soirée)
+            .SetLanguage(new LanguageEN())
+            .Build();
+
+        let checkerFRNonPalindromeMorning
+            = new CheckPalindromeBuilder()
+            .SetTimeOfDay(TimeOfDay.Matin)
+            .SetLanguage(new LanguageVF())
+            .Build();
+
+        let checkerIncPalindromeMorning
+            = new CheckPalindromeBuilder()
+            .SetTimeOfDay(TimeOfDay.Nuit)
+            .Build();
+
+        // Un palindrome, en anglais, le soir
+        console.log(checkerENPalindromeEvening.Check("radar"));
+
+        // Un non-palindrome en français, le matin
+        console.log(checkerFRNonPalindromeMorning.Check("ynov"));
+
+        // Un palindrome, la nuit
+        console.log(checkerIncPalindromeMorning.Check("wow"));
     });
 });

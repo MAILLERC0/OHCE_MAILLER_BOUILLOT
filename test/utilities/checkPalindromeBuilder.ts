@@ -2,10 +2,11 @@ import { CheckPalindrome } from '../../src/domain/checkPalindrome';
 import { LanguageInterface } from '../../src/domain/languageInterface';
 import { LanguageVF } from '../../src/domain/languageVF';
 import { TimeOfDay } from '../../src/domain/timeOfDay';
+import { LanguageStub } from './languageStub';
 
 
 export class CheckPalindromeBuilder {
-    private _language: LanguageInterface = new LanguageVF(); //set en français pour ne pas spécifier de language dans la step1
+    private _language: LanguageInterface = new LanguageStub();
     private _moment: TimeOfDay = TimeOfDay.Inconnu;
 
     public static Default(){

@@ -11,6 +11,21 @@ export class TimeOfDay {
         this._moment = moment;
     }
 
+    public static getCurrentTimeOfDay(): TimeOfDay{
+        const currentTime = new Date();
+        const hour = currentTime.getHours();
+
+        if (hour >= 5 && hour < 12) {
+            return TimeOfDay.Matin;
+        } else if (hour >= 12 && hour < 18) {
+            return TimeOfDay.AprèsMidi;
+        } else if (hour >= 18 && hour < 22) {
+            return TimeOfDay.Soirée;
+        } else {
+            return TimeOfDay.Nuit;
+        }
+    }
+
     public toString(){
         return this._moment;
     }
