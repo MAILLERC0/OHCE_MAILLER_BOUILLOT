@@ -5,6 +5,7 @@ import { LanguageVF } from "../src/domain/languageVF";
 import { LanguageEN } from "../src/domain/languageEN";
 import { LanguageInterface } from "../src/domain/languageInterface";
 import { CheckPalindromeBuilder } from "./utilities/checkPalindromeBuilder";
+import { LanguageSpy } from './utilities/languageSpy';
 
 
 describe("STEP 1 - Test", () => {
@@ -15,7 +16,6 @@ describe("STEP 1 - Test", () => {
     ])("QUAND on saisit une chaine " +
         "ALORS celle-ci est renvoyé en miroir ", (text : string) =>{
         let checker = new CheckPalindromeBuilder()
-        .SetLanguage(new LanguageVF())
         .Build();
         let result = checker.Check(text);
         
@@ -29,7 +29,6 @@ describe("STEP 1 - Test", () => {
         "ET 'Bien dit !' est envoyé ensuite", () =>{
        const palindrome = "kayak";
        let checker = new CheckPalindromeBuilder()
-       .SetLanguage(new LanguageVF())
        .Build();
 
        let result = checker.Check(palindrome);
@@ -41,7 +40,6 @@ describe("STEP 1 - Test", () => {
         "ALORS 'Bonjour' est envoyé avant toute réponse ", () =>{
         const text = "test";
         let checker = new CheckPalindromeBuilder()
-        .SetLanguage(new LanguageVF())
         .Build();
 
         let result = checker.Check(text);
@@ -55,7 +53,6 @@ describe("STEP 1 - Test", () => {
         "ALORS 'Au revoir' est envoyé en dernier", () =>{
         const text = "test";
         let checker = new CheckPalindromeBuilder()
-        .SetLanguage(new LanguageVF())
         .Build();
 
         let result = checker.Check(text);
@@ -90,38 +87,40 @@ describe("STEP 2 - Test", () => {
     });
 
     test.each([
-        [new LanguageVF(), 'test'],
-        [new LanguageVF(), 'kayak'],
-        [new LanguageEN(), 'hello'],
-        [new LanguageEN(), 'wow'],
+        ['test'],
+        ['kayak'],
+        ['hello'],
+        ['wow'],
     ])("ETANT DONNE un utilisateur parlant une langue " +
         "QUAND on saisit une chaine " +
         "ALORS <bonjour> de cette langue est envoyé avant tout",
-        (language: LanguageInterface, text: string) => {
+        (text: string) => {
+        let languageSpy = new LanguageSpy();
 
         let checker = new CheckPalindromeBuilder()
-            .SetLanguage(language)
+            .SetLanguage(languageSpy)
             .Build();
 
         let result = checker.Check(text);
 
         let firstLine = result.split(os.EOL)[0];
-    
-        expect(firstLine).toEqual(language.Begin())
+        expect(languageSpy.BeginAccessed()).toBe(true)
+        expect(firstLine).toEqual(languageSpy.Begin())
     });
 
     test.each([
-        [new LanguageVF(), 'test'],
-        [new LanguageVF(), 'kayak'],
-        [new LanguageEN(), 'hello'],
-        [new LanguageEN(), 'wow'],
+        ['test'],
+        ['kayak'],
+        ['hello'],
+        ['wow'],
     ])("ETANT DONNE un utilisateur parlant une langue " +
         "QUAND on saisit une chaine " +
         "ALORS <au revoir> de cette langue est envoyé en dernier",
-        (language: LanguageInterface, text: string) => {
+        (text: string) => {
+        let languageSpy = new LanguageSpy();
 
         let checker = new CheckPalindromeBuilder()
-            .SetLanguage(language)
+            .SetLanguage(languageSpy)
             .Build();
 
         let result = checker.Check(text);
@@ -129,7 +128,8 @@ describe("STEP 2 - Test", () => {
         let lines = result.split(os.EOL);
         let lastLine = lines[lines.length - 1];
 
-        expect(lastLine).toEqual(language.End())
+        expect(languageSpy.EndAccessed()).toBe(true)
+        expect(lastLine).toEqual(languageSpy.End())
     });
 
     
