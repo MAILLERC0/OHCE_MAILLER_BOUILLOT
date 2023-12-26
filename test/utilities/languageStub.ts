@@ -1,13 +1,14 @@
 import { LanguageInterface } from "../../src/domain/languageInterface";
+import { TimeOfDay } from "../../src/domain/timeOfDay";
 
 export class LanguageStub implements LanguageInterface {
     FindPalindrome(): string {
         return "";
     }
-    Begin(): string {
+    Begin(moment: TimeOfDay): string {
         return "";
     }
-    End(): string {
+    End(moment: TimeOfDay): string {
         return "";
     }
 
