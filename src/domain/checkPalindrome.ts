@@ -1,17 +1,21 @@
 import * as os from "os";
-import { Formulation } from "./formulation";
+import { LanguageInterface } from "./languageInterface";
 
 export class CheckPalindrome{
+    private readonly _language: LanguageInterface;
 
+    constructor(language: LanguageInterface) {
+        this._language = language
+    }
 
-    public static Check(text:string): string {
+    public Check(text:string): string {
         let mirror = text.split('').reverse().join('');
 
-        let output = Formulation.BONJOUR + os.EOL + mirror + os.EOL 
+        let output = this._language.Begin() + os.EOL + mirror + os.EOL 
         if (mirror == text){
-            output += ">> " + Formulation.BIEN_DIT + os.EOL;
+            output += ">> " + this._language.FindPalindrome() + os.EOL;
         }
 
-        return output + Formulation.AU_REVOIR;
+        return output + this._language.End();
     }
 }
