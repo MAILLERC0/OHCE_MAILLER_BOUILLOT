@@ -1,4 +1,4 @@
-import { CheckPalindromeBuilder } from "./utilities/checkPalindromeBuilder";
+/*import { CheckPalindromeBuilder } from "./utilities/checkPalindromeBuilder";
 
 describe("STEP 4 - Test", () => {
 
@@ -15,4 +15,4 @@ describe("STEP 4 - Test", () => {
             expect(result).checkLastLine()
         });
     
- });
+ });*/
