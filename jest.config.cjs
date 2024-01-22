@@ -3,4 +3,7 @@ module.exports = {
     preset: 'ts-jest',
     testEnvironment: 'node',
     testMatch: ['<rootDir>/test/*.ts'],
+    setupFilesAfterEnv: [
+        "<rootDir>/test/utilities/stringMatchers.ts"
+    ],
 };

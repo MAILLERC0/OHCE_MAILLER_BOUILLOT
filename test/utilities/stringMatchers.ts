@@ -1,23 +1,25 @@
 import {expect} from '@jest/globals';
 import type {MatcherFunction} from 'expect';
+import * as os from 'os';
 
-const checkLastLineHasNewline: MatcherFunction = function (current: unknown) {
-  if (typeof current !== 'string') throw new Error("Only works with strings");
+const checkLastLine: MatcherFunction<[expected: unknown]> = function (actual: unknown) {
+  if (typeof actual !== 'string') throw new Error("Only works with strings");
 
-  const hasNewline = /\r?\n$/.test(current);
+  const lines = actual.split(os.EOL);
+  const lastLine = lines[lines.length - 1];
 
-  const message = hasNewline
+  const endsWithNewline = lastLine === '';
+
+  const message = endsWithNewline
     ? `La dernière ligne se terminer par un retour à la ligne.`
-    : `La dernière ligne devrait se terminer par un retour à la ligne, mais elle se termine par ${current}.`;
+    : `La dernière ligne devrait se terminer par un retour à la ligne, mais elle se termine par ${actual}.`;
 
   return {
     message: () => message,
-    pass: hasNewline
+    pass: endsWithNewline
   };
 };
 
 expect.extend({
-    checkLastLine: checkLastLineHasNewline,
-  });
-  
-export {};
+    checkLastLine,
+});

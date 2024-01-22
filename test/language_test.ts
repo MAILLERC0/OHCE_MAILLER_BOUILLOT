@@ -7,7 +7,7 @@ import { CheckPalindromeBuilder } from "./utilities/checkPalindromeBuilder";
 import * as os from 'os';
 
 
-describe("STEP 3 - Test Language", () => {
+describe("STEP 3 - Langage", () => {
     test.each([
         [new LanguageVF(), TimeOfDay.Matin, Formulation.BONJOUR],
         [new LanguageVF(), TimeOfDay.AprèsMidi, Formulation.BONJOUR],

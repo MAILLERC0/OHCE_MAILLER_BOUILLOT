@@ -3,7 +3,7 @@ import { LanguageVF } from "../src/domain/languageVF";
 import { TimeOfDay } from "../src/domain/timeOfDay";
 import { CheckPalindromeBuilder } from "./utilities/checkPalindromeBuilder";
 
-describe("STEP 4 - Tests Bonus", () => {
+describe("STEP 4 - Demo 22/01/2024", () => {
 
     test("Tests de Recettes",
         () => {

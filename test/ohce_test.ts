@@ -4,7 +4,7 @@ import { LanguageSpy } from "./utilities/languageSpy";
 import { LanguageStub } from "./utilities/languageStub";
 import { TimeOfDay } from "../src/domain/timeOfDay";
 
-describe("STEP 2 - Test", () => {
+describe("STEP 2 - Palindrome", () => {
 
     test("ETANT DONNE un utilisateur parlant une langue " +
         "QUAND on saisit un palindrome " +
