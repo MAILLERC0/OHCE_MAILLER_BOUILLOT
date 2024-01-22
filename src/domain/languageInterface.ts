@@ -4,4 +4,6 @@ export interface LanguageInterface {
 
     Begin(): string;
 
+    End(): string;
+
 }

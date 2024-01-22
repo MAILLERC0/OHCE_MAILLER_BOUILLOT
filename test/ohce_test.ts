@@ -48,5 +48,27 @@ describe("STEP 2 - Test", () => {
         expect(firstLine).toEqual(language.Begin())
     });
 
+
+    test.each([
+        [new LanguageVF(), 'test'],
+        [new LanguageVF(), 'kayak'],
+        [new LanguageEN(), 'hello'],
+        [new LanguageEN(), 'wow'],
+    ])("ETANT DONNE un utilisateur parlant une langue " +
+        "QUAND on saisit une chaine " +
+        "ALORS <au revoir> de cette langue est envoyé en dernier",
+        (language: LanguageInterface, text: string) => {
+
+        let checker = new CheckPalindromeBuilder()
+            .SetLanguage(language)
+            .Build();
+
+        let result = checker.Check(text);
+
+        let lines = result.split(os.EOL);
+        let lastLine = lines[lines.length - 1];
+
+        expect(lastLine).toEqual(language.End())
+    });
     
  });

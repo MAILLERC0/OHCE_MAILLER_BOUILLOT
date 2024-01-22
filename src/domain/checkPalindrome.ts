@@ -17,6 +17,6 @@ export class CheckPalindrome{
             output += ">> " + this._language.FindPalindrome() + os.EOL;
         }
 
-        return output + Formulation.AU_REVOIR;
+        return output + this._language.End();
     }
 }

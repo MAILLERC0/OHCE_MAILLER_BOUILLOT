@@ -12,5 +12,7 @@ export class LanguageVF implements LanguageInterface{
         return Formulation.BONJOUR;
     }
 
-    
+    public End(): string{
+        return Formulation.AU_REVOIR;
+    }
 }
