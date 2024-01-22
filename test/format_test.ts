@@ -12,7 +12,7 @@ describe("STEP 4 - Format de sortie", () => {
                 new CheckPalindromeBuilder()
                     .Build();
 
-            let result = checker.Check(text);
+            let result = checker.Check(text) + os.EOL;
             console.log(result);
 
             expect(checkLastLine(result)).toMatchObject({
