@@ -12,7 +12,7 @@ export class CheckPalindrome{
 
         let mirror = text.split('').reverse().join('');
 
-        let output = Formulation.BONJOUR + os.EOL + mirror + os.EOL 
+        let output = this._language.Begin() + os.EOL + mirror + os.EOL 
         if (mirror == text){
             output += ">> " + this._language.FindPalindrome() + os.EOL;
         }

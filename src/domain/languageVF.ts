@@ -7,4 +7,10 @@ export class LanguageVF implements LanguageInterface{
         return Formulation.BIEN_DIT;
     }
 
+    
+    public Begin(): string{
+        return Formulation.BONJOUR;
+    }
+
+    
 }

@@ -27,5 +27,26 @@ describe("STEP 2 - Test", () => {
         expect(result).toContain(palindrome + os.EOL + ">> " + expected);
     });
 
+    test.each([
+        [new LanguageVF(), 'test'],
+        [new LanguageVF(), 'kayak'],
+        [new LanguageEN(), 'hello'],
+        [new LanguageEN(), 'wow'],
+    ])("ETANT DONNE un utilisateur parlant une langue " +
+        "QUAND on saisit une chaine " +
+        "ALORS <bonjour> de cette langue est envoyé avant tout",
+        (language: LanguageInterface, text: string) => {
+
+        let checker = new CheckPalindromeBuilder()
+            .SetLanguage(language)
+            .Build();
+
+        let result = checker.Check(text);
+
+        let firstLine = result.split(os.EOL)[0];
+    
+        expect(firstLine).toEqual(language.Begin())
+    });
+
     
  });
