@@ -15,7 +15,18 @@ export class LanguageVF implements LanguageInterface{
         return Formulation.BONJOUR;
     }
 
-    public End(): string{
+    public End(moment: TimeOfDay): string{
+        if(moment == TimeOfDay.Matin)
+            return Formulation.BONNE_JOURNEE;
+
+        if(moment == TimeOfDay.AprèsMidi)
+            return Formulation.BONNE_APRESMIDI;
+
+        if(moment == TimeOfDay.Soirée)
+            return Formulation.BONNE_SOIREE;
+        if (moment == TimeOfDay.Nuit)
+            return Formulation.BONNE_NUIT;
+
         return Formulation.AU_REVOIR;
     }
 }

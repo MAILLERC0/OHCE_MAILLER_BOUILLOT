@@ -8,7 +8,7 @@ export class LanguageStub implements LanguageInterface {
     Begin(moment: TimeOfDay): string {
         return "Begin";
     }
-    End(): string {
+    End(moment: TimeOfDay): string {
         return "End";
     }
 

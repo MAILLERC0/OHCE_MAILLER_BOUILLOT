@@ -14,9 +14,9 @@ export class LanguageSpy extends LanguageStub {
         return this._beginAccessed;
     }
 
-    public End(): string {
+    public End(moment: TimeOfDay): string {
         this._endAccessed = true;
-        return super.End();
+        return super.End(moment);
     }
 
     public EndAccessed() {

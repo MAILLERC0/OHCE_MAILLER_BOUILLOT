@@ -67,7 +67,7 @@ describe("STEP 2 - Test", () => {
         let lastLine = lines[lines.length - 1];
 
         expect(languageSpy.EndAccessed()).toBe(true)
-        expect(lastLine).toEqual(languageSpy.End())
+        expect(lastLine).toEqual(languageSpy.End(TimeOfDay.Inconnu))
     });
 
     

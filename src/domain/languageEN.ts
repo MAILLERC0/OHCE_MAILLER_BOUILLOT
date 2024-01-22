@@ -21,7 +21,10 @@ export class LanguageEN implements LanguageInterface{
         return Formulation.HELLO;
     }
 
-    public End(): string{
+    public End(moment: TimeOfDay): string{
+        if(moment == TimeOfDay.Nuit)
+            return Formulation.GOOD_NIGHT;
+
         return Formulation.GOODBYE;
     }
 

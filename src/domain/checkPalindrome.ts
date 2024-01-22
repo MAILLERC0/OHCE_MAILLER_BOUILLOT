@@ -20,6 +20,6 @@ export class CheckPalindrome{
             output += ">> " + this._language.FindPalindrome() + os.EOL;
         }
 
-        return output + this._language.End();
+        return output + this._language.End(this._moment);
     }
 }

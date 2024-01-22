@@ -6,6 +6,6 @@ export interface LanguageInterface {
 
     Begin(moment: TimeOfDay): string;
 
-    End(): string;
+    End(moment: TimeOfDay): string;
 
 }
