@@ -1,10 +1,10 @@
 import { CheckPalindrome } from '../../src/domain/checkPalindrome';
 import { LanguageInterface } from '../../src/domain/languageInterface';
-import { LanguageVF } from '../../src/domain/languageVF';
+import { LanguageStub } from './languageStub';
 
 
 export class CheckPalindromeBuilder {
-    private _language: LanguageInterface = new LanguageVF();
+    private _language: LanguageInterface = new LanguageStub();
 
     public static Default(){
         return new CheckPalindromeBuilder().Build();
@@ -14,7 +14,7 @@ export class CheckPalindromeBuilder {
         return new CheckPalindrome(this._language);
     }
 
-    public SetLanguage(language: LanguageVF): CheckPalindromeBuilder {
+    public SetLanguage(language: LanguageStub): CheckPalindromeBuilder {
         this._language = language;
         return this;
     }
