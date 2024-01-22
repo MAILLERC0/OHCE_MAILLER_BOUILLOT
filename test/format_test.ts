@@ -1,4 +1,6 @@
 import { CheckPalindromeBuilder } from "./utilities/checkPalindromeBuilder";
+import { checkLastLine } from './utilities/checkLastLine';
+import * as os from 'os';
 
 describe("STEP 4 - Format de sortie", () => {
 
@@ -11,8 +13,11 @@ describe("STEP 4 - Format de sortie", () => {
                     .Build();
 
             let result = checker.Check(text);
-            // @ts-ignore
-            expect(result).checkLastLine()
+            console.log(result);
+
+            expect(checkLastLine(result)).toMatchObject({
+                pass: true,
+            });
         });
     
  });
