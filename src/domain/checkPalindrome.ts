@@ -1,9 +1,14 @@
 import * as os from "os";
+import { LanguageInterface } from "./languageInterface";
 import { Formulation } from "./formulation";
 
 export class CheckPalindrome{
+    private readonly _language: LanguageInterface;
 
-    public static Check(text:string): string {
+    constructor(language: LanguageInterface) {
+        this._language = language
+    }
+    public Check(text:string): string {
 
         let mirror = text.split('').reverse().join('');
 
