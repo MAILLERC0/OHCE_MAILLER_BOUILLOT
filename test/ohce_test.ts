@@ -36,5 +36,17 @@ describe("STEP 1 - Test", () => {
  
        expect(firstLine).toEqual(Formulation.BONJOUR)
     })
+
+    test("QUAND on saisit une chaine " +
+        "ALORS 'Au revoir' est envoyé en dernier", () =>{
+        const text = "test";
+
+        let result = CheckPalindrome.Check(text);
+    
+        let lines = result.split(os.EOL);
+        let lastLine = lines[lines.length - 1];
+
+        expect(lastLine).toEqual(Formulation.AU_REVOIR)
+    })
     
  });

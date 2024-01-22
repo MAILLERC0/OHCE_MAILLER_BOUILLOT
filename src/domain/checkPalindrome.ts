@@ -12,6 +12,6 @@ export class CheckPalindrome{
             output += ">> " + Formulation.BIEN_DIT + os.EOL;
         }
 
-        return output;
+        return output + Formulation.AU_REVOIR;
     }
 }
