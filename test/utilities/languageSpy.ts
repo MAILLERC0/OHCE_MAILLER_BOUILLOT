@@ -1,12 +1,13 @@
+import { TimeOfDay } from "../../src/domain/timeOfDay";
 import {LanguageStub} from "./languageStub";
 
 export class LanguageSpy extends LanguageStub {
     private _beginAccessed:boolean = false;
     private _endAccessed:boolean = false;
 
-    public Begin(): string {
+    public Begin(moment: TimeOfDay): string {
         this._beginAccessed = true;
-        return super.Begin();
+        return super.Begin(moment);
     }
 
     public BeginAccessed() {

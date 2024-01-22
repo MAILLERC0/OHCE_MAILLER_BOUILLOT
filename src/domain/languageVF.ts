@@ -1,5 +1,6 @@
 import { Formulation } from "./formulation";
 import { LanguageInterface } from "./languageInterface";
+import { TimeOfDay } from "./timeOfDay";
 
 export class LanguageVF implements LanguageInterface{
 
@@ -7,8 +8,10 @@ export class LanguageVF implements LanguageInterface{
         return Formulation.BIEN_DIT;
     }
 
-    
-    public Begin(): string{
+    public Begin(moment: TimeOfDay): string{
+        if(moment == TimeOfDay.Soirée || moment == TimeOfDay.Nuit)
+            return Formulation.BONSOIR;
+
         return Formulation.BONJOUR;
     }
 

@@ -1,12 +1,8 @@
 import * as os from "os";
-import { CheckPalindrome } from "../src/domain/checkPalindrome";
-import { Formulation } from "../src/domain/formulation";
-import { LanguageVF } from "../src/domain/languageVF";
-import { LanguageEN } from "../src/domain/languageEN";
-import { LanguageInterface } from "../src/domain/languageInterface";
 import { CheckPalindromeBuilder } from "./utilities/checkPalindromeBuilder";
 import { LanguageSpy } from "./utilities/languageSpy";
 import { LanguageStub } from "./utilities/languageStub";
+import { TimeOfDay } from "../src/domain/timeOfDay";
 
 describe("STEP 2 - Test", () => {
 
@@ -47,7 +43,7 @@ describe("STEP 2 - Test", () => {
 
         let firstLine = result.split(os.EOL)[0];
         expect(languageSpy.BeginAccessed()).toBe(true)
-        expect(firstLine).toEqual(languageSpy.Begin())
+        expect(firstLine).toEqual(languageSpy.Begin(TimeOfDay.Inconnu))
     });
 
     test.each([
